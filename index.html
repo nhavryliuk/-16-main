@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Сервіс замовлення таксі</title>
+    <script>
+        function showThankYouMessage(event) {
+            event.preventDefault();
+            alert('Дякуємо за замовлення!');
+        }
+
+        function calculateEstimatedArrival() {
+            const currentDate = new Date();
+            currentDate.setMinutes(currentDate.getMinutes() + 30); // Додаємо 30 хвилин для прибуття
+            const arrivalTime = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('estimated-arrival').textContent = `Очікуваний час прибуття: ${arrivalTime}`;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Сервіс замовлення таксі</h1>
+    </header>
+    
+    <main>
+        <div class="content-wrapper" style="display: flex; align-items: center; gap: 20px;"><img src="taxi-image.jpg" alt="Таксі" class="taxi-image" style="max-width: 500px; height: auto;">
+                                    <section class="order-form">
+            <h2>Замовити таксі</h2>
+            <form action="#" method="post" onsubmit="showThankYouMessage(event); calculateEstimatedArrival();">
+                <label for="pickup">Місце посадки:</label>
+                <input type="text" id="pickup" name="pickup" placeholder="Введіть адресу" required>
+
+                <label for="destination">Місце призначення:</label>
+                <input type="text" id="destination" name="destination" placeholder="Введіть адресу" required>
+
+                <label for="phone">Номер телефону:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Введіть номер телефону" required>
+
+                <label for="car-type">Тип автомобіля:</label>
+                <select id="car-type" name="car-type">
+                    <option value="standard">Стандарт</option>
+                    <option value="comfort">Комфорт</option>
+                    <option value="business">Бізнес</option>
+                </select>
+
+                <button type="submit">Замовити таксі</button>
+            </form>
+            <p id="estimated-arrival" class="estimated-arrival"></p>
+        </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Сервіс замовлення таксі</p>
+    </footer>
+</body>
+</html>
